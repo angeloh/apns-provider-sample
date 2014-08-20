@@ -7,12 +7,18 @@ public class Main {
     public static void main(String[] args) {
         ApnsService service =
                 APNS.newService()
-                .withCert("path/to/sample.p12", "password")
+                .withCert("src/main/resources/DEV-APNS-CERT.p12", "sparkover66")
                 .withSandboxDestination()
                 .build();
-        String payload = APNS.newPayload().alertBody("ぷーーーーっしゅぅ！！！").build();
+        String payload = APNS.newPayload()
+                  .badge(2) //offline member's unread msgs
+                  .localizedKey("NEW_MESSAGE_PUSH_FORMAT")
+                  .localizedArguments("angelokh") // sender name
+                  .actionKey("REPLY").build();
+
         // set APNS device token here.
-        String token = "xxxxxxxx xxxxxxxx xxxxxxxx xxxxxxxx xxxxxxxx xxxxxxxx xxxxxxxx xxxxxxxx";
+        String token = "b0726cce215375c7113067747d89378261bfb5a9f07c248cfa044f5d775017f5";
         service.push(token, payload);
+        System.exit(0);
     }
 }

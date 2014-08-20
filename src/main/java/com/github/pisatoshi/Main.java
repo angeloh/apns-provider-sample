@@ -13,7 +13,6 @@ public class Main {
         String payload = APNS.newPayload()
                   .badge(2) //offline member's unread msgs
                   .localizedKey("NEW_MESSAGE_PUSH_FORMAT")
-                  .localizedArguments("angelokh") // sender name
                   .actionKey("REPLY").build();
 
         // set APNS device token here.
